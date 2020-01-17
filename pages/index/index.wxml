@@ -1,2 +1,1 @@
-<!--pages/auth/index.wxml-->
-<text>pages/index/index.wxml</text>
+<searchInput></searchInput>
