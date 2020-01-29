@@ -1,4 +1,5 @@
-// pages/auth/index.js
+import { request } from '../../request/index'
+
 Page({
 
   /**
@@ -19,40 +20,37 @@ Page({
 
   // 获取轮播图数据
   getSwiperData() {
-    wx.request({
-      url: 'https://api.zbztb.cn/api/public/v1/home/swiperdata',
-      success: (result) => {
-        // console.log(result);
-        this.setData({
-          swiperData: result.data.message
-        })
-      },
+    request({
+      url: '/home/swiperdata',
+    }).then(res => {
+      this.setData({
+        swiperData: res.data.message
+      })
 
-    });
+    })
 
   },
   // 获取导航菜单
   getTapMenu() {
-    wx.request({
-      url: 'https://api.zbztb.cn/api/public/v1/home/catitems',
-      success: (result) => {
-        this.setData({
-          tapMenu: result.data.message
-        })
-      },
-    });
+    request({
+      url: '/home/catitems',
+    }).then(res => {
+      this.setData({
+        tapMenu: res.data.message
+      })
 
+    })
   },
   // 获取楼层数据
   getFloorData() {
-    wx.request({
-      url: 'https://api.zbztb.cn/api/public/v1/home/floordata',
-      success: (result) => {
-        this.setData({
-          floorList: result.data.message
-        })
-      },
-    });
+    request({
+      url: '/home/floordata',
+    }).then(res => {
+      this.setData({
+        floorList: res.data.message
+      })
+
+    })
 
   }
 
