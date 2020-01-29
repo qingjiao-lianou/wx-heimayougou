@@ -6,13 +6,15 @@ Page({
    */
   data: {
     swiperData: [],// 轮播图数据
-    tapMenu:[],//导航数组
+    tapMenu: [],//导航
+    floorList: [],//楼层
   },
 
 
   onLoad: function (options) {
     this.getSwiperData(),
-      this.getTapMenu()
+      this.getTapMenu(),
+      this.getFloorData()
   },
 
   // 获取轮播图数据
@@ -34,9 +36,21 @@ Page({
     wx.request({
       url: 'https://api.zbztb.cn/api/public/v1/home/catitems',
       success: (result) => {
-       this.setData({
-         tapMenu:result.data.message
-       })
+        this.setData({
+          tapMenu: result.data.message
+        })
+      },
+    });
+
+  },
+  // 获取楼层数据
+  getFloorData() {
+    wx.request({
+      url: 'https://api.zbztb.cn/api/public/v1/home/floordata',
+      success: (result) => {
+        this.setData({
+          floorList: result.data.message
+        })
       },
     });
 

@@ -8,3 +8,22 @@
   flex: 1;
   padding: 20rpx;
 }
+.floor_index_content {
+  overflow: hidden;
+}
+.floor_index_content navigator {
+  box-sizing: border-box;
+  float: left;
+  width: 33.3333%;
+  border-left: 5rpx solid #fff;
+  border-right: 5rpx solid #fff;
+}
+.floor_index_content navigator:nth-last-child(-n+4) {
+  height: 207.97413793rpx;
+}
+.floor_index_content navigator:nth-last-child(-n+4) image {
+  height: 100%;
+}
+.floor_index_content navigator:nth-last-child(-n+2) {
+  border-top: 5px solid #fff;
+}

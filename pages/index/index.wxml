@@ -8,12 +8,28 @@
 
     </swiper>
 
-</view> 
+</view>
 <!-- 导航 -->
 <view class="tap">
-    <navigator wx:for="{{tapMenu}}" wx::key="index">
+    <navigator wx:for="{{tapMenu}}" wx:key="index">
         <image src="{{item.image_src}}" mode="widthFix" />
-          
+
     </navigator>
-      
+
+</view>
+
+<!-- 楼层 -->
+<view class="floor">
+    <view class="floor_index" wx:for="{{floorList}}" wx:for-item="item1" wx:for-index="index1" wx:key="index">
+        <view class="floor_index_title">
+            <image src="{{item1.floor_title.image_src}}" mode="widthFix" />
+        </view>
+        <view class="floor_index_content">
+            <navigator wx:for="{{item1.product_list}}" wx:for-index="index2" wx:for-item="item2" wx:key="name">
+                <image src="{{item2.image_src}}" mode="{{index2===0?'widthFix':'scaleToFill'}}" />
+            </navigator>
+
+
+        </view>
+    </view>
 </view>
