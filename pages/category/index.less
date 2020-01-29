@@ -1,0 +1,45 @@
+.category{
+    height: ~'calc(100vh - 90rpx)' ;
+    display: flex;
+    overflow: hidden;
+    .category_name{
+       width: 160rpx;
+       .cates_titel{
+           height: 80rpx;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           font-size: 30rpx;
+       }
+    }
+    .active{
+        color: var(--color);
+        border-left: 3px solid currentColor;
+        // box-sizing: border-box;
+    }
+    .category_goods{
+        flex: 1;
+        .goods_list{
+            .goods_list_titel{
+                height: 80rpx;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 50rpx;
+                font-weight:600;
+            }
+            .goods_list_content{
+                display: flex;
+                flex-wrap: wrap;
+                .goods_item{
+                    width: 33.3%;
+                    text-align: center;
+                    image{
+                        width: 60%;
+                    }
+                    .goods_item_title{}
+                }
+            }
+        }
+    }
+}

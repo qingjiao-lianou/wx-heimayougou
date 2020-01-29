@@ -1,66 +1,37 @@
-// pages/category/index.js
+import {request} from '../../request/index'
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+      currentIndex:0,//左侧菜单当前索引
+      muneList:[],//左菜单
+      goodsList:[],//商品列表
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  cates:[],//分类数据
   onLoad: function (options) {
-
+    this.getGoodsList()
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  // 获取分类数据
+  getGoodsList(){
+    request({
+      url:"/categories"
+    }).then(res => {
+     this.cates = res.data.message
+      const goodsList = this.cates[0].children
+      const muneList =this.cates.map(v => v.cat_name)
+      this.setData({
+        muneList,goodsList
+      })
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  // 左侧菜单点击事件
+  handleMenu(e){
+    const {index} = e.target.dataset
+    const goodsList = this.cates[index].children
+   this.setData({
+    currentIndex:index,
+    goodsList
+   })
   }
 })
