@@ -9,3 +9,11 @@
     </swiper>
 
 </view> 
+<!-- 导航 -->
+<view class="tap">
+    <navigator wx:for="{{tapMenu}}" wx::key="index">
+        <image src="{{item.image_src}}" mode="widthFix" />
+          
+    </navigator>
+      
+</view>
