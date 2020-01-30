@@ -13,6 +13,7 @@ Page({
     ],
     currentIndex: 0,//当前索引
     goodsList: [], //商品列表
+    isShow:false
   },
 
   //请求商品列表参数
@@ -25,6 +26,8 @@ Page({
 
   // 总页数
   sumPagenum: 1,
+
+  
 
   onLoad: function (options) {
     this.listParams.cid = options.cid
@@ -54,23 +57,37 @@ Page({
       this.setData({
         goodsList: [...oldGoodsList, ...newGoodsList]
       })
-
+      //  关闭下拉刷新窗口
+      wx.stopPullDownRefresh()
     })
   },
 
   // 滚动条触底事件
   onReachBottom() {
     if (this.listParams.pagenum >= this.sumPagenum) {
+      // 没有下一页
       wx.showToast({
         title: '无',
         icon: 'none',
       });
+     this.setData({
+       isShow:true
+     })
     } else {
       // 有下一页数据
       this.listParams.pagenum++;
       this.getGoodsList()
     }
 
+  },
+
+  // 下拉刷新
+  onPullDownRefresh() {
+    this.listParams.pagenum = 1;
+    this.setData({
+      goodsList: []
+    })
+    this.getGoodsList()
   }
 
 })

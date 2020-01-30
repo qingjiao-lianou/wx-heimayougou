@@ -30,3 +30,9 @@
   font-size: 32rpx;
   color: var(--color);
 }
+.goods_content .is_show {
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
