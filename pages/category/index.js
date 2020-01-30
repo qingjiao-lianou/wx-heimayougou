@@ -2,6 +2,7 @@ import { request } from '../../request/index'
 
 Page({
   data: {
+    scrollTop:0, //右侧滚动条的位置
     currentIndex: 0,//左侧菜单当前索引
     muneList: [],//左菜单
     goodsList: [],//商品列表
@@ -62,7 +63,8 @@ Page({
     const goodsList = this.cates[index].children
     this.setData({
       currentIndex: index,
-      goodsList
+      goodsList,
+      scrollTop:0
     })
   }
 })

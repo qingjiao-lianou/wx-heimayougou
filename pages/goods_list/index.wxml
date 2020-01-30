@@ -1,2 +1,6 @@
-<!--pages/goods_list/index.wxml-->
-<text>pages/goods_list/index.wxml</text>
+<Search></Search>
+<GoodsTabs tabList="{{tabList}}" currentIndex="{{currentIndex}}" bindhandleItem="handleItem">
+    <view wx:if="{{currentIndex===0}}">0</view>
+    <view wx:elif="{{currentIndex===1}}">1</view>
+    <view wx:else>2</view>
+</GoodsTabs>
