@@ -1,6 +1,18 @@
 <Search></Search>
 <GoodsTabs tabList="{{tabList}}" currentIndex="{{currentIndex}}" bindhandleItem="handleItem">
-    <view wx:if="{{currentIndex===0}}">0</view>
+    <view class="goods_content" wx:if="{{currentIndex===0}}">
+        <navigator class="goods_item" wx:for="{{goodsList}}" wx:key="goods_id">
+            <view class="goods_img">
+                <image class=""
+                    src="{{item.goods_small_logo || 'http://img2.imgtn.bdimg.com/it/u=26528730,97133990&fm=26&gp=0.jpg'}}"
+                    mode="widthFix" />
+            </view>
+            <view class="goods_info">
+                <view class="goods_title">{{item.goods_name}}</view>
+                <view class="goods_price">￥{{item.goods_price}}</view>
+            </view>
+        </navigator>
+    </view>
     <view wx:elif="{{currentIndex===1}}">1</view>
     <view wx:else>2</view>
 </GoodsTabs>
