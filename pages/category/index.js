@@ -43,6 +43,7 @@ Page({
     request({
       url: "/categories"
     }).then(res => {
+     
       this.cates = res.data.message
       //  本地存储
       wx.setStorageSync('cates', {

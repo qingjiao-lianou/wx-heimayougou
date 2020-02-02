@@ -1,7 +1,7 @@
 <Search></Search>
 <GoodsTabs tabList="{{tabList}}" currentIndex="{{currentIndex}}" bindhandleItem="handleItem">
     <view class="goods_content" wx:if="{{currentIndex===0}}">
-        <navigator class="goods_item" wx:for="{{goodsList}}" wx:key="goods_id">
+        <navigator class="goods_item" wx:for="{{goodsList}}" wx:key="goods_id" url="/pages/goods_detail/index?goods_id={{item.goods_id}}">
             <view class="goods_img">
                 <image class=""
                     src="{{item.goods_small_logo || 'http://img2.imgtn.bdimg.com/it/u=26528730,97133990&fm=26&gp=0.jpg'}}"
