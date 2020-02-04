@@ -31,18 +31,20 @@
     <!-- 底部工具栏 -->
     <view class="btm_tool">
         <view class="tool_item">
+            <button open-type="contact"></button>
             <text class="iconfont icon-kefu"></text>
             <view class="tool_name">客服</view>
         </view>
         <view class="tool_item">
+            <button open-type="share"></button>
             <text class="iconfont icon-yixianshi-"></text>
             <view class="tool_name">分享</view>
         </view>
-        <view class="tool_item">
+        <navigator class="tool_item" open-type="switchTab" url="/pages/cart/index">
             <text class="iconfont icon-gouwuche"></text>
             <view class="tool_name">购物车</view>
-        </view>
-        <view class="tool_item btn_cart">购物车</view>
+        </navigator>
+        <view class="tool_item btn_cart" bindtap="addCarts">加入购物车</view>
         <view class="tool_item btn_buy">立即购买</view>
     </view>
 
