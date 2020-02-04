@@ -1,4 +1,5 @@
 import { request } from '../../request/index'
+import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
 
   /**
@@ -13,7 +14,7 @@ Page({
     ],
     currentIndex: 0,//当前索引
     goodsList: [], //商品列表
-    isShow:false
+    isShow: false
   },
 
   //请求商品列表参数
@@ -27,7 +28,7 @@ Page({
   // 总页数
   sumPagenum: 1,
 
-  
+
 
   onLoad: function (options) {
     this.listParams.cid = options.cid
@@ -43,23 +44,22 @@ Page({
   },
 
   // 获取商品列表数据
-  getGoodsList() {
-    request({
+  async getGoodsList() {
+    const res = await request({
       url: "/goods/search",
       data: this.listParams
-    }).then(res => {
-      // 计算数据总页数
-      this.sumPagenum = Math.ceil(res.data.message.total / this.listParams.pagesize)
-      // 之前的数据
-      const oldGoodsList = this.data.goodsList
-      // 新的数据
-      const newGoodsList = res.data.message.goods
-      this.setData({
-        goodsList: [...oldGoodsList, ...newGoodsList]
-      })
-      //  关闭下拉刷新窗口
-      wx.stopPullDownRefresh()
     })
+    // 计算数据总页数
+    this.sumPagenum = Math.ceil(res.data.message.total / this.listParams.pagesize)
+    // 之前的数据
+    const oldGoodsList = this.data.goodsList
+    // 新的数据
+    const newGoodsList = res.data.message.goods
+    this.setData({
+      goodsList: [...oldGoodsList, ...newGoodsList]
+    })
+    //  关闭下拉刷新窗口
+    wx.stopPullDownRefresh()
   },
 
   // 滚动条触底事件
@@ -70,9 +70,9 @@ Page({
         title: '无',
         icon: 'none',
       });
-     this.setData({
-       isShow:true
-     })
+      this.setData({
+        isShow: true
+      })
     } else {
       // 有下一页数据
       this.listParams.pagenum++;

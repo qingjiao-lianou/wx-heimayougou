@@ -1,4 +1,5 @@
 import { request } from '../../request/index'
+import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
 
   data: {
@@ -13,17 +14,15 @@ Page({
   },
 
   // 获取商品详情数据
-  getGoodsInfo(goods_id) {
-    request({
+  async getGoodsInfo(goods_id) {
+    const res = await request({
       url: "/goods/detail",
       data: {
         goods_id
       }
-    }).then(res => {
-      this.setData({
-        goodsInfo: res.data.message
-      })
-
+    })
+    this.setData({
+      goodsInfo: res.data.message
     })
   },
 
@@ -60,7 +59,7 @@ Page({
       title: '加入成功',
       mask: true,
     });
-      
+
   }
 
 })

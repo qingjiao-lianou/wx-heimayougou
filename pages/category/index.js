@@ -1,8 +1,9 @@
 import { request } from '../../request/index'
+import regeneratorRuntime from '../../lib/runtime/runtime';
 
 Page({
   data: {
-    scrollTop:0, //右侧滚动条的位置
+    scrollTop: 0, //右侧滚动条的位置
     currentIndex: 0,//左侧菜单当前索引
     muneList: [],//左菜单
     goodsList: [],//商品列表
@@ -39,23 +40,21 @@ Page({
   },
 
   // 获取分类数据
-  getGoodsList() {
-    request({
+  async getGoodsList() {
+    const res = await request({
       url: "/categories"
-    }).then(res => {
-     
-      this.cates = res.data.message
-      //  本地存储
-      wx.setStorageSync('cates', {
-        data: res.data.message,
-        time: Date.now()
-      });
+    })
+    this.cates = res.data.message
+    //  本地存储
+    wx.setStorageSync('cates', {
+      data: res.data.message,
+      time: Date.now()
+    });
 
-      const goodsList = this.cates[0].children
-      const muneList = this.cates.map(v => v.cat_name)
-      this.setData({
-        muneList, goodsList
-      })
+    const goodsList = this.cates[0].children
+    const muneList = this.cates.map(v => v.cat_name)
+    this.setData({
+      muneList, goodsList
     })
   },
   // 左侧菜单点击事件
@@ -65,7 +64,7 @@ Page({
     this.setData({
       currentIndex: index,
       goodsList,
-      scrollTop:0
+      scrollTop: 0
     })
   }
 })

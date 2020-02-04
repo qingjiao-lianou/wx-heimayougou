@@ -1,5 +1,5 @@
 import { request } from '../../request/index'
-
+import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
 
   /**
@@ -19,39 +19,31 @@ Page({
   },
 
   // 获取轮播图数据
-  getSwiperData() {
-    request({
+  async getSwiperData() {
+    const res = await request({
       url: '/home/swiperdata',
-    }).then(res => {
-      this.setData({
-        swiperData: res.data.message
-      })
-
     })
-
+    this.setData({
+      swiperData: res.data.message
+    })
   },
   // 获取导航菜单
-  getTapMenu() {
-    request({
+  async getTapMenu() {
+    const res = await request({
       url: '/home/catitems',
-    }).then(res => {
-      this.setData({
-        tapMenu: res.data.message
-      })
-
+    })
+    this.setData({
+      tapMenu: res.data.message
     })
   },
   // 获取楼层数据
-  getFloorData() {
-    request({
+  async getFloorData() {
+    const res = await request({
       url: '/home/floordata',
-    }).then(res => {
-      this.setData({
-        floorList: res.data.message
-      })
-
     })
-
+    this.setData({
+      floorList: res.data.message
+    })
   }
 
 })
