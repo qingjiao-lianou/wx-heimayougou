@@ -1,1 +1,61 @@
-<button bindtap="getUserAddress">获取用户地址</button>
+<!-- 获取地址 -->
+<view class="address">
+    <button wx:if="{{!address}}" bindtap="getUserAddress">获取用户地址</button>
+    <view wx:else class="address_info">
+        <view class="address_info_name">
+            <view>{{address.userName}}</view>
+            <view>{{address.detailAddress}}</view>
+        </view>
+        <view class="address_info_phone">{{address.telNumber}}</view>
+    </view>
+</view>
+
+<!-- 购物车 -->
+<view class="cart">
+    <view class="cart_title">购物车</view>
+    <view class="cart_list">
+        <view class="cart_item">
+            <!-- 复选框 -->
+            <view class="cart_chb_wrap">
+                <checkbox-group>
+                    <checkbox></checkbox>      
+                </checkbox-group>
+            </view>
+            <!-- 图片 -->
+            <view class="cart_img_wrap">
+                <image src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1035415831,1465727770&fm=26&gp=0.jpg" mode=widthFix" />
+            </view>
+            <!-- 商品信息 -->
+            <view class="cart_info_wrap">
+                <view class="goods_name">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis blanditiis ipsum natus nihil, atque aperiam nostrum ratione quisquam quos culpa, officiis nemo omnis harum libero odio porro assumenda accusamus vitae.
+                </view>
+                <view class="cart_tool">
+                    <view class="goods_price">￥999</view>
+                    <view class="goods_nums_wrap">
+                        <view class="btn_num">-</view>
+                        <view class="goods_num">1</view>
+                        <view class="btn_num">+</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 结算 -->
+<view class="btm_cart">
+    <view class="cart_all_wrap">
+        <checkbox-group>
+            <checkbox>全选</checkbox>
+        </checkbox-group>
+    </view>
+    <view class="total_price_wrap">
+        <view class="total_price1">
+            合计
+            <text>￥999</text> 
+        </view>
+        <view class="total_price2">包含运费</view>
+    </view>
+    <view class="cart_order">结算100</view>
+</view>

@@ -6,14 +6,14 @@ Page({
 
 
   data: {
-
+    address: {}
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onShow() {
+    const address = wx.getStorageSync('address');
+    this.setData({
+      address
+    })
   },
 
   // 获取用户地址
@@ -25,6 +25,12 @@ Page({
         await openAuth()
       } else {
         const res2 = await chooseAddress()
+        res2.detailAddress = res2.provinceName + res2.cityName + res2.countyName + res2.detailInfo
+        this.setData({
+          address: res2
+        })
+        wx.setStorageSync('address', res2);
+
       }
     } catch (error) {
       console.log(error);
