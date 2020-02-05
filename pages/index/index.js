@@ -24,7 +24,7 @@ Page({
       url: '/home/swiperdata',
     })
     this.setData({
-      swiperData: res.data.message
+      swiperData: res
     })
   },
   // 获取导航菜单
@@ -33,7 +33,7 @@ Page({
       url: '/home/catitems',
     })
     this.setData({
-      tapMenu: res.data.message
+      tapMenu: res
     })
   },
   // 获取楼层数据
@@ -42,7 +42,7 @@ Page({
       url: '/home/floordata',
     })
     this.setData({
-      floorList: res.data.message
+      floorList: res
     })
   }
 

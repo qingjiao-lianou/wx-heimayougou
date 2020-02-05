@@ -22,7 +22,7 @@ Page({
       }
     })
     this.setData({
-      goodsInfo: res.data.message
+      goodsInfo: res
     })
   },
 

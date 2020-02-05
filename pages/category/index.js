@@ -44,10 +44,10 @@ Page({
     const res = await request({
       url: "/categories"
     })
-    this.cates = res.data.message
+    this.cates = res
     //  本地存储
     wx.setStorageSync('cates', {
-      data: res.data.message,
+      data: res,
       time: Date.now()
     });
 

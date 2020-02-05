@@ -1,9 +1,10 @@
+import { chooseAddress, openAuth, getAuth } from '../../request/index'
+import regeneratorRuntime from '../../lib/runtime/runtime';
+
 // pages/cart/index.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
+
   data: {
 
   },
@@ -15,52 +16,19 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  // 获取用户地址
+  async getUserAddress() {
+    try {
+      const res1 = await getAuth()
+      let auth = res1.authSetting["scope.address"]
+      if (auth === false) {
+        await openAuth()
+      } else {
+        const res2 = await chooseAddress()
+      }
+    } catch (error) {
+      console.log(error);
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    }
   }
 })

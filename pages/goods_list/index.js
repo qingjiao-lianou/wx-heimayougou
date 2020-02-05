@@ -50,11 +50,11 @@ Page({
       data: this.listParams
     })
     // 计算数据总页数
-    this.sumPagenum = Math.ceil(res.data.message.total / this.listParams.pagesize)
+    this.sumPagenum = Math.ceil(res.total / this.listParams.pagesize)
     // 之前的数据
     const oldGoodsList = this.data.goodsList
     // 新的数据
-    const newGoodsList = res.data.message.goods
+    const newGoodsList = res.goods
     this.setData({
       goodsList: [...oldGoodsList, ...newGoodsList]
     })
