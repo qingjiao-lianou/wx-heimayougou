@@ -13,49 +13,53 @@
 <!-- 购物车 -->
 <view class="cart">
     <view class="cart_title">购物车</view>
-    <view class="cart_list">
-        <view class="cart_item">
+    <view wx:if="{{carts.length != 0}}" class="cart_list">
+        <view class="cart_item" wx:for="{{carts}}" wx:key="index">
             <!-- 复选框 -->
             <view class="cart_chb_wrap">
-                <checkbox-group>
-                    <checkbox></checkbox>      
+                <checkbox-group bindchange="handleChange" data-index="{{index}}">
+                    <checkbox checked="{{item.checked}}"></checkbox>
                 </checkbox-group>
             </view>
             <!-- 图片 -->
             <view class="cart_img_wrap">
-                <image src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1035415831,1465727770&fm=26&gp=0.jpg" mode=widthFix" />
+                <image src="{{item.goods_small_logo}}" mode=widthFix" />
             </view>
             <!-- 商品信息 -->
             <view class="cart_info_wrap">
                 <view class="goods_name">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis blanditiis ipsum natus nihil, atque aperiam nostrum ratione quisquam quos culpa, officiis nemo omnis harum libero odio porro assumenda accusamus vitae.
+                    {{item.goods_name}}
                 </view>
                 <view class="cart_tool">
-                    <view class="goods_price">￥999</view>
+                    <view class="goods_price">￥{{item.goods_price}}</view>
                     <view class="goods_nums_wrap">
-                        <view class="btn_num">-</view>
-                        <view class="goods_num">1</view>
-                        <view class="btn_num">+</view>
+                        <view class="btn_num" data-index="{{index}}" bindtap="handleNum" data-count="{{-1}}">-</view>
+                        <view class="goods_num">{{item.num}}</view>
+                        <view class="btn_num" data-index="{{index}}" bindtap="handleNum" data-count="{{1}}">+</view>
                     </view>
                 </view>
             </view>
         </view>
     </view>
+    <view wx:else>
+        <image src="http://img3.imgtn.bdimg.com/it/u=416722945,3632396234&fm=26&gp=0.jpg" mode="widthFix" />
+    </view>
+
 </view>
 
 <!-- 结算 -->
 <view class="btm_cart">
     <view class="cart_all_wrap">
         <checkbox-group>
-            <checkbox>全选</checkbox>
+            <checkbox checked="{{totalChecked}}">全选</checkbox>
         </checkbox-group>
     </view>
     <view class="total_price_wrap">
         <view class="total_price1">
             合计
-            <text>￥999</text> 
+            <text>￥{{totalPrice}}</text>
         </view>
         <view class="total_price2">包含运费</view>
     </view>
-    <view class="cart_order">结算100</view>
+    <view class="cart_order" bindtap="handleOrder">结算({{totalNum}})</view>
 </view>

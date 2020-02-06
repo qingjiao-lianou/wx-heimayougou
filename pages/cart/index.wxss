@@ -1,5 +1,6 @@
 .address button {
-  margin-top: 10rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
 }
 .address .address_info {
   display: flex;

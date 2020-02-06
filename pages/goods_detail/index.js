@@ -49,7 +49,8 @@ Page({
         goods_name: goodsInfo.goods_name,
         goods_price: goodsInfo.goods_price,
         goods_small_logo: goodsInfo.goods_small_logo,
-        num: 1
+        num: 1,
+        checked:true
       })
     } else {
       cartList[index].num++
