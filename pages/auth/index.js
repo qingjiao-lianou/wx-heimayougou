@@ -1,66 +1,26 @@
-// pages/auth/index.js
+import { request, login } from '../../request/index'
+import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
+  // 获取用户信息
+  bindgetuserinfo(e) {
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+    this.getToken(e)
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+  // 获取用户token
+  async getToken(e) {
+    const { signature, rawData, encryptedData, iv } = e.detail
+    const { code } = await login()
+    const tokenData = { signature, rawData, encryptedData, iv, code }
+    // console.log(tokenData);
+    // 此接口失效
+    const res = await request({
+      url: '/users/wxlogin',
+      method: "post",
+      data: tokenData
+    })
+    console.log(res);
 
   }
 })

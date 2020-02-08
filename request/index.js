@@ -7,18 +7,17 @@ export const request = (params) => {
         title: "加载中",
         mask: true
     });
-
     const baseUrl = "https://api.zbztb.cn/api/public/v1"
     return new Promise((resolve, reject) => {
         wx.request({
             ...params,
             url: baseUrl + params.url,
             success: (res) => {
-                // resolve(res)
-                if(res.data.meta.status === 200){
+                resolve(res)
+                if (res.data.meta.status === 200) {
                     resolve(res.data.message)
-                }else{
-                    reject(err)
+                } else {
+                    // reject(err)
                 }
             },
             fail: (err) => {
@@ -37,7 +36,7 @@ export const request = (params) => {
 
 // 获取用户授权状态
 export const getAuth = () => {
-    return new Promise((resolve,reject) => {
+    return new Promise((resolve, reject) => {
         wx.getSetting({
             success: (res) => {
                 resolve(res)
@@ -45,32 +44,32 @@ export const getAuth = () => {
             fail: (err) => {
                 reject(err)
             },
-            complete: () => {}
+            complete: () => { }
         });
-          
+
     })
 }
 
 // 打开授权页面
 export const openAuth = () => {
-    return new Promise((resolve,reject) => {
-       wx.openSetting({
-        success: (res) => {
-            resolve(res)
-        },
-        fail: (err) => {
-            reject(err)
-        },
-        complete: () => {}
-       });
-         
-          
+    return new Promise((resolve, reject) => {
+        wx.openSetting({
+            success: (res) => {
+                resolve(res)
+            },
+            fail: (err) => {
+                reject(err)
+            },
+            complete: () => { }
+        });
+
+
     })
 }
 
 // 获取用户地址
 export const chooseAddress = () => {
-    return new Promise((resolve,reject) => {
+    return new Promise((resolve, reject) => {
         wx.chooseAddress({
             success: (res) => {
                 resolve(res)
@@ -78,24 +77,42 @@ export const chooseAddress = () => {
             fail: (err) => {
                 reject(err)
             },
-            complete: () => {}
+            complete: () => { }
         });
-          
+
     })
 }
 
 // 删除提示窗口
 export const showModal = (params) => {
-    return new Promise((resolve,reject) => {
-       wx.showModal({
-          ...params,
-           success: (res) => {
-             resolve(res.confirm)
-           },
-           fail: () => {},
-           complete: () => {}
-       });
-         
-          
+    return new Promise((resolve, reject) => {
+        wx.showModal({
+            ...params,
+            success: (res) => {
+                resolve(res.confirm)
+            },
+            fail: () => { },
+            complete: () => { }
+        });
+
+
+    })
+}
+
+// 获取code
+export const login = (params) => {
+    return new Promise((resolve, reject) => {
+        wx.login({
+            ...params,
+            timeout: 10000,
+            success: (res) => {
+                resolve(res);
+            },
+            fail: (err) => {
+                reject(err)
+            },
+
+        });
+
     })
 }

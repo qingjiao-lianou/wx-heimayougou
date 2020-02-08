@@ -22,7 +22,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.1",
-	"appid": "wx87b484f8f0664139",
+	"appid": "wxe497811d29bfa8bb",
 	"projectname": "wx-dome",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -86,6 +86,13 @@
 					"id": -1,
 					"name": "支付",
 					"pathName": "pages/pay/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "用户授权",
+					"pathName": "pages/auth/index",
 					"scene": null
 				}
 			]

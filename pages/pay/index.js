@@ -39,7 +39,13 @@ Page({
        totalNum, totalPrice
     })
   },
-  // 商品数量
 
+// 支付
+handlePay(){
+  wx.navigateTo({
+    url: '/pages/auth/index',
+  });
+    
+}
 
 })
